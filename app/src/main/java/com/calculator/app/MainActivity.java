@@ -1,14 +1,15 @@
-package com.calculator.tutorial;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.calculator.app;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.calculator.tutorial.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity<val> extends AppCompatActivity {
     boolean isNewOperator = true;
     EditText edt1;
     String operator = "+";
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(isNewOperator)
             edt1.setText("");
-        isNewOperator = true;
+        isNewOperator = false;
 
         String number = edt1.getText().toString();
 
@@ -113,9 +114,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void clearEvent(View view) {
-        edt1.setText("0");
+        edt1.setText("");
         isNewOperator = true;
     }
+
+    public void deleteEvent(View view) {
+        edt1.setText("");
+        isNewOperator = false;
+    }
+
+
 
     public void percentEvent(View view) {
         double num = Double.parseDouble(edt1.getText().toString())/100;
