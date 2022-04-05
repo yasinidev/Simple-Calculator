@@ -1,10 +1,12 @@
-package com.example.tutorial;
+package com.calculator.tutorial;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+
 
 public class MainActivity extends AppCompatActivity {
     boolean isNewOperator = true;
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(isNewOperator)
             edt1.setText("");
-        isNewOperator = false;
+        isNewOperator = true;
 
         String number = edt1.getText().toString();
 
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void equalEvent(View view) {
         String newNumber = edt1.getText().toString();
-        double output = 0.0;
+        double output = 0;
 
         if(operator == "+")
             output = Double.parseDouble(initialNumber) + Double.parseDouble(newNumber);
