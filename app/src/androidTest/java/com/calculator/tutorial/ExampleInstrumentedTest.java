@@ -1,4 +1,4 @@
-package com.example.tutorial;
+package com.calculator.tutorial;
 
 import android.content.Context;
 
