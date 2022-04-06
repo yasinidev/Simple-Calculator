@@ -1,5 +1,6 @@
 package com.calculator.app;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -7,6 +8,12 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.calculator.tutorial.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
 public class MainActivity<val> extends AppCompatActivity {
@@ -15,12 +22,50 @@ public class MainActivity<val> extends AppCompatActivity {
     String operator = "+";
     String initialNumber = "";
 
-    @Override
+    private AdView mAdView;
+
+    @SuppressLint("MissingSuperCall")
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
 
         edt1 = findViewById(R.id.editText);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+        });
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
     }
 
 
@@ -119,9 +164,13 @@ public class MainActivity<val> extends AppCompatActivity {
     }
 
     public void deleteEvent(View view) {
-        edt1.setText("");
-        isNewOperator = false;
-    }
+        String BackSpace= null;
+        if(edt1.getText().length()>0){
+            StringBuilder stringBuilder= new StringBuilder(edt1.getText());
+            stringBuilder.deleteCharAt(edt1.getText().length()-1);
+            BackSpace=stringBuilder.toString();
+            edt1.setText(BackSpace);
+    }}
 
 
 
