@@ -318,11 +318,17 @@
                 android:textSize="130px"></Button>
         </TableRow>
 
-
         <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
-            android:layout_width="304dp"
-            android:layout_height="67dp" />
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="@color/gray"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-8227931442806939/6971452476">
+        </com.google.android.gms.ads.AdView>
 
     </TableLayout>
 </LinearLayout>
