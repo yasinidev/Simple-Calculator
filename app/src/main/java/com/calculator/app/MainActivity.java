@@ -107,6 +107,9 @@ public class MainActivity<val> extends AppCompatActivity {
         else if(view.getId() == R.id.btnZero){
             number += "0";
         }
+        else if(view.getId() == R.id.btnZeroo){
+            number += "00";
+        }
 
         else if(view.getId() == R.id.btnDot){
             number += ".";
