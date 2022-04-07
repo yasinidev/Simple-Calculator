@@ -282,18 +282,6 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/btnDot"
-                android:layout_width="30pt"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="1pt"
-                android:layout_weight="1"
-                android:background="@color/purple_200"
-                android:onClick="numberEvent"
-                android:text="."
-                android:textColor="@color/white"
-                android:textSize="130px"></Button>
-
-            <Button
                 android:id="@+id/btnZero"
                 android:layout_width="30pt"
                 android:layout_height="match_parent"
@@ -306,8 +294,32 @@
                 android:textSize="130px"></Button>
 
             <Button
+                android:id="@+id/btnZeroo"
+                android:layout_width="30pt"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1pt"
+                android:layout_weight="1"
+                android:background="@color/purple_200"
+                android:onClick="numberEvent"
+                android:text="00"
+                android:textColor="@color/white"
+                android:textSize="130px"></Button>
+
+            <Button
+                android:id="@+id/btnDot"
+                android:layout_width="30pt"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="1pt"
+                android:layout_weight="1"
+                android:background="@color/purple_200"
+                android:onClick="numberEvent"
+                android:text="."
+                android:textColor="@color/white"
+                android:textSize="130px"></Button>
+
+            <Button
                 android:id="@+id/btnEqual"
-                android:layout_width="76pt"
+                android:layout_width="30pt"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="1pt"
                 android:layout_weight="1"
@@ -316,13 +328,14 @@
                 android:text="@string/equal"
                 android:textColor="@color/dark_orange"
                 android:textSize="130px"></Button>
+
         </TableRow>
 
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_width="320dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:background="@color/gray"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
