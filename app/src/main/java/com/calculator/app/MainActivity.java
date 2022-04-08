@@ -16,7 +16,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 
-public class MainActivity<val> extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
     boolean isNewOperator = true;
     EditText edt1;
     String operator = "+";
