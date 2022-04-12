@@ -3,7 +3,9 @@ package com.calculator.app;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,12 +17,21 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
+
 
 public class MainActivity extends AppCompatActivity {
     boolean isNewOperator = true;
     EditText edt1;
     String operator = "+";
     String initialNumber = "";
+    private TextView screen;
+    private String display="";
+    private EditText inputtext;
+    private TextView displaytext;
+    private String currentOperator="";
+    private String result="";
 
     private AdView mAdView;
 
@@ -31,7 +42,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setContentView(R.layout.activity_main);
 
-        edt1 = findViewById(R.id.editText);
+        edt1 = findViewById(R.id.input_box);
+        screen = (TextView)findViewById(R.id.input_box);
+        screen.setText(display);
+        inputtext = findViewById(R.id.input_box);
+        displaytext = findViewById(R.id.result_box);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -69,100 +84,83 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void numberEvent(View view) {
-
-        if(isNewOperator)
-            edt1.setText("");
-        isNewOperator = false;
-
-        String number = edt1.getText().toString();
-
-        if(view.getId() == R.id.btnOne){
-            number += "1";
-        }
-        else if(view.getId() == R.id.btnTwo){
-            number += "2";
-        }
-        else if(view.getId() == R.id.btnThree){
-            number += "3";
-        }
-        else if(view.getId() == R.id.btnFour){
-            number += "4";
-        }
-        else if(view.getId() == R.id.btnFive){
-            number += "5";
-        }
-        else if(view.getId() == R.id.btnSix){
-            number += "6";
-        }
-        else if(view.getId() == R.id.btnSeven){
-            number += "7";
-        }
-        else if(view.getId() == R.id.btnEight){
-            number += "8";
-        }
-        else if(view.getId() == R.id.btnNine){
-            number += "9";
-        }
-        else if(view.getId() == R.id.btnZero){
-            number += "0";
-        }
-        else if(view.getId() == R.id.btnZeroo){
-            number += "00";
-        }
-
-        else if(view.getId() == R.id.btnDot){
-            number += ".";
-        }
-
-        edt1.setText(number);
-    
+    private void appendToLast(String str) {
+        this.inputtext.getText().append(str);
     }
 
-    public void operatorEvent(View view) {
+    public void onClickNumber(View v) {
+        Button b = (Button) v;
+        display += b.getText();
+        appendToLast(display);
+        display="";
+    }
 
-        isNewOperator =true;
-        initialNumber = edt1.getText().toString();
-
-        if(view.getId() == R.id.btnMultiply){
-            operator = "*";}
-
-        else if(view.getId() == R.id.btnMinus){
-            operator = "-";}
-
-        else if(view.getId() == R.id.btnDivide){
-            operator = "/";}
-
-        else if(view.getId() == R.id.btnPlus){
-            operator = "+";
+    public void onClickOperator(View v) {
+        Button b = (Button) v;
+        display += b.getText();
+        if(endsWithOperatore())
+        {
+            replace(display);
+            currentOperator = b.getText().toString();
+            display = "";
         }
+        else {
+            appendToLast(display);
+            currentOperator = b.getText().toString();
 
+            display = "";
+        }
 
     }
 
-    public void equalEvent(View view) {
-        String newNumber = edt1.getText().toString();
-        double output = 0;
-
-        if(operator == "+")
-            output = Double.parseDouble(initialNumber) + Double.parseDouble(newNumber);
-
-        if(operator == "/")
-            output = Double.parseDouble(initialNumber) / Double.parseDouble(newNumber);
-
-        if(operator == "*")
-            output = Double.parseDouble(initialNumber) * Double.parseDouble(newNumber);
-
-        if(operator == "-")
-            output = Double.parseDouble(initialNumber) - Double.parseDouble(newNumber);
-
-        edt1.setText(output+"");
-
+    private String getinput() {
+        return this.inputtext.getText().toString();
     }
 
+    private boolean endsWithOperatore() {
+        return getinput().endsWith("+") || getinput().endsWith("-") || getinput().endsWith("/") || getinput().endsWith("x");
+    }
+
+    private void replace(String str) {
+        inputtext.getText().replace(getinput().length() - 1, getinput().length(), str);
+    }
+
+    private double operate(String a,String b,String cp)
+    {
+        switch(cp) {
+            case "+": return Double.valueOf(a) + Double.valueOf(b);
+            case "-": return Double.valueOf(a) - Double.valueOf(b);
+            case "x": return Double.valueOf(a) * Double.valueOf(b);
+            case "\u00F7": return Double.valueOf(a) / Double.valueOf(b);
+            default: return -1;
+        }
+    }
+
+    public void equalresult(View v) {
+        String input = getinput();
+
+        if(!endsWithOperatore()) {
+
+            if (input.contains("x")) {
+                input = input.replaceAll("x", "*");
+            }
+
+            if (input.contains("\u00F7")) {
+                input = input.replaceAll("\u00F7", "/");
+            }
+            Expression expression = new ExpressionBuilder(input).build();
+            double result = expression.evaluate();
+
+            displaytext.setText(String.valueOf(result));
+        }
+        else displaytext.setText("");
+
+        System.out.println(result);
+    }
 
     public void clearEvent(View view) {
         edt1.setText("");
+        displaytext.setText("");
         isNewOperator = true;
     }
 
@@ -183,4 +181,5 @@ public class MainActivity extends AppCompatActivity {
         isNewOperator = true;
         
     }
+
 }
