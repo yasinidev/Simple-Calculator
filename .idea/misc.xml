@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/drawable/backspace.xml" value="0.1345" />
-        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout-large/activity_main.xml" value="0.17443351859769132" />
+        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout-normal/activity_main.xml" value="0.2125" />
+        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout-small/activity_main.xml" value="0.6591276252019386" />
+        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout-xlarge/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/Users/YaS/AndroidStudioProjects/calculator/app/src/main/res/mipmap/ic_launcher.xml" value="0.1" />
